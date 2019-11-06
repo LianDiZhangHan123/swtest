@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta content="#4285F4" name="theme-color">
+<meta name="referrer" content="no-referrer">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <meta name="Description" content="PWA TEST.">
+<link rel="manifest" href="manifest.json">
+<title>H A N</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+
+	<div>hello</div>
+	<p>service worker是否注册成功：<span id="isSuccess"></span></p>
+    <div>
+        <img  alt="" src="https://b-ssl.duitang.com/uploads/item/201509/02/20150902134849_J4GWX.jpeg   " width="490" height="275.49048316252" >
+    <button id="butInstall" aria-label="Install" hidden>install</button>
+    </div>
+	
+	<script src="install.js"></script>
+	<script src="https://storage.googleapis.com/workbox-cdn/releases/5.0.0-rc.0/workbox-routing.prod.js"></script>
+	<script src="workbox-sw.js"></script>
+	<script src="service-worker.js"></script>
+	<script>
+	// Check that service workers are supported
+	if ('serviceWorker' in navigator) {
+	  // Use the window load event to keep the page load performant
+	  window.addEventListener('load', () => {
+	  navigator.serviceWorker.register('service-worker.js')
+	  // navigator.serviceWorker.register('/sw.js')
+	        .then((reg) => {
+	            console.log('Service worker registered.', reg);
+	            $('#isSuccess').text('注册成功');
+	    })
+	  });
+	
+	}else{
+		alert("浏览器不支持Service Worker");
+	}
+	</script>
+</body>
+</html>
